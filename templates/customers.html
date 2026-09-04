@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customers</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Customers</h1>
+
+    <form method="POST" action="/customers">
+
+        <label>Customer Name:</label>
+        <input type="text" name="customer_name" required>
+
+        <br><br>
+
+        <label>Phone:</label>
+        <input type="text" name="phone" required>
+
+        <br><br>
+
+        <button type="submit">Add Customer</button>
+
+    </form>
+
+    <hr>
+
+    <h2>Customer List</h2>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+        </tr>
+
+        {% for customer in customers %}
+
+        <tr>
+            <td>{{ customer[0] }}</td>
+            <td>{{ customer[1] }}</td>
+            <td>{{ customer[2] }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/">Back to Home</a>
+
+</body>
+</html>

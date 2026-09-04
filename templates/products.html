@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Products</h1>
+
+    <form method="POST" action="/products">
+
+        <label>Product Name:</label>
+        <input type="text" name="product_name" required>
+
+        <br><br>
+
+        <label>Price:</label>
+        <input type="number" name="price" step="0.01" required>
+
+        <br><br>
+
+        <label>Stock:</label>
+        <input type="number" name="stock" required>
+
+        <br><br>
+
+        <button type="submit">Add Product</button>
+
+    </form>
+
+    <hr>
+
+    <h2>Product List</h2>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Action</th>
+        </tr>
+
+        {% for product in products %}
+
+        <tr>
+            <td>{{ product[0] }}</td>
+            <td>{{ product[1] }}</td>
+            <td>₹{{ product[2] }}</td>
+            <td>{{ product[3] }}</td>
+
+            <td>
+                <form method="GET" action="/delete_product/{{ product[0] }}">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/">Back to Home</a>
+
+</body>
+</html>
